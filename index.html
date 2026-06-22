@@ -40,47 +40,88 @@
         #taskInput {
             background: rgba(255, 255, 255, 0.15);
             color: white;
-            width: 400px;
-            height: 45px;
-            padding: 0 15px;
+            width: 500px;
+            height: 40px;
+            padding: 0 8px;
             font-size: 16px;
             border-radius: 10px;
             border: none;
             outline: none;
         }
 
+        #taskInput::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
         #addBtn {
             background: rgba(255, 255, 255, 0.15);
             color: white;
             width: 50px;
-            height: 45px;
+            height: 40px;
             font-size: 24px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
         }
+        .filterbtn {
+            width: 270px;
+            height: 40px;
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            border-radius: 16px;
+        }
+
+        .filterbtn button {
+            background: transparent;
+            border: none;
+            color: white;
+
+            padding: 5px 12px;
+            border-radius: 8px;
+
+            cursor: pointer;
+            font-size: 14px;
+
+            transition: all 0.3s ease;
+        }
+
+        .filterbtn button:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+
+
+
+
+        .dashboard-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
 
         .statssection {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 10px;
+            gap: 12px;
         }
 
-        .activebadge {
-            padding: 10px 20px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
+        .activebadge,
         .completedbadge {
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.1);
+
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 14px;
         }
     </style>
 </head>
@@ -89,19 +130,25 @@
     <div class="heading">
         <h1>MY TASKS 📋</h1>
     </div>
+
     <div class="addtask">
         <input id="taskInput" type="text" placeholder="Enter Task">
         <button id="addBtn">+</button>
     </div>
-    <div class="statssection">
-        <div class="activebadge">0 Active</div>
-        <div class="completedbadge">0 Completed</div>
-    </div>
 
-    <div class="filterbtn">
-        <button>All</button>
-        <button>Active</button>
-        <button>Completed</button>
+    <div class="dashboard-section">
+
+        <div class="statssection">
+            <div class="activebadge">0 Active</div>
+            <div class="completedbadge">0 Completed</div>
+        </div>
+
+        <div class="filterbtn">
+            <button class="active-filter">All</button>
+            <button>Active</button>
+            <button>Completed</button>
+        </div>
+
     </div>
     <div class="tasklist">
         <ul>
