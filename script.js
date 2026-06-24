@@ -23,9 +23,15 @@ addBtn.addEventListener("click", function () {
 
     checkbox.addEventListener("click", function () {
         if (checkbox.checked) {
+            activeCount--
+            completedCount++
+            updateBadges()
             taskSpan.classList.add("completed")
         }
         else {
+            activeCount++
+            completedCount--
+            updateBadges()
             taskSpan.classList.remove("completed")
         }
     })
@@ -54,10 +60,7 @@ let completedBadge = document.getElementById("completedBadge")
 
 function updateBadges() {
     activeBadge.textContent = activeCount + " Active"
-    // completedBadge.textContent = completedCount++
-
-
-
+    completedBadge.textContent = completedCount + "Completed"
 }
 
 
