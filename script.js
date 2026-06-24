@@ -16,15 +16,32 @@ addBtn.addEventListener("click", function () {
     checkbox.type = "checkbox"
     newTask.prepend(checkbox)
 
+
+    // checkbox.addEventListener(
+    //     "click", function () {
+    //         if (checkbox.checked) {
+    //             console.log("Checkbox Clicked")
+    //         }
+
+
+    // })/
+    checkbox.addEventListener("click", function () {
+        console.log("Clicked");
+        alert("Checkbox Clicked")
+    })
+
     let deleteBtn = document.createElement("button")
     deleteBtn.type = "button"
     newTask.append(deleteBtn)
     deleteBtn.innerHTML = "Delete"
     deleteBtn.className = "deleteBtn"
+
+    deleteBtn.addEventListener(
+        "click", function () {
+            let parentLi = deleteBtn.parentElement
+            parentLi.remove()
+        }
+    )
 });
-deleteBtn.addEventListener(
-    "click", function() {
-        let parentLi = deleteBtn.parentElement
-        parentLi.remove()
-    }
-)
+
+
