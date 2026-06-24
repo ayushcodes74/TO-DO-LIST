@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TO DO LIST</title>
-    
+
     <style>
         body {
             min-height: 100vh;
@@ -109,8 +109,8 @@
             gap: 12px;
         }
 
-        .activebadge,
-        .completedbadge {
+        #activeBadge,
+        #completedBadge {
             padding: 8px 16px;
             border-radius: 999px;
 
@@ -183,6 +183,11 @@
         #clearCompletedBtn:hover {
             background: rgb(239, 68, 68);
         }
+
+        .completed {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
     </style>
 </head>
 
@@ -199,8 +204,8 @@
     <div class="dashboard-section">
 
         <div class="statssection">
-            <div class="activebadge">0 Active</div>
-            <div class="completedbadge">0 Completed</div>
+            <div id="activeBadge">0 Active</div>
+            <div id="completedBadge">0 Completed</div>
         </div>
 
         <div class="filterbtn">
