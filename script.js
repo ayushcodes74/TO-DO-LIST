@@ -50,6 +50,16 @@ addBtn.addEventListener("click", function () {
     deleteBtn.addEventListener(
         "click", function () {
             let parentLi = deleteBtn.parentElement
+            
+            let checkbox = parentLi.querySelector("input")
+            if (checkbox.checked) {
+                completedCount--
+                updateBadges()
+            }
+            else {
+                activeCount--
+                updateBadges()
+            }
             parentLi.remove()
         }
     )
