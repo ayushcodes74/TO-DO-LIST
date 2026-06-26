@@ -10,10 +10,12 @@ addBtn.addEventListener("click", function () {
         alert("Enter Text");
         return;
     }
+    taskInput.value = "";
     taskList.push(taskText)
-    JSON.stringify(taskList)
-    localStorage.setItem("tasks", JSON.stringify(taskList))
+
+    saveTasks()
     createTask(taskText)
+
     activeCount++
     updateBadges()
 
@@ -52,24 +54,53 @@ function createTask(taskText) {
             updateBadges()
             taskSpan.classList.remove("completed")
         }
-    } 
- deleteBtn.addEventListener(
-        "click", function () {
-            let parentLi = deleteBtn.parentElement
+    });
+    deleteBtn.addEventListener("click", function () {
 
-            let checkbox = parentLi.querySelector("input")
-            if (checkbox.checked) {
-                completedCount--
-                updateBadges()
-            }
-            else {
-                activeCount--
-                updateBadges()
-            }
-            parentLi.remove()
-        }
-    ) 
+    let parentLi = deleteBtn.parentElement;
+
+    let checkbox = parentLi.querySelector("input");
+    let span = parentLi.querySelector("span");
+
+    let taskText = span.textContent;
+
+    let index = taskList.indexOf(taskText);
+
+    if (index !== -1) {
+        taskList.splice(index, 1);
+        saveTasks();
+    }
+
+    if (checkbox.checked) {
+        completedCount--;
+    } else {
+        activeCount--;
+    }
+
+    updateBadges();
+
+    parentLi.remove();
+
+});
 }
+function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(taskList))
+}
+function loadTasks() {
 
+    let storedTasks = localStorage.getItem("tasks")
+
+    if (storedTasks) {
+        taskList = JSON.parse(storedTasks);
+    }
+    activeCount = taskList.length
+
+    taskList.forEach(function (taskText) {
+        createTask(taskText);
+    });
+    updateBadges()
+
+}
+loadTasks();
 
 
