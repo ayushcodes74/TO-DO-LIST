@@ -1,5 +1,6 @@
 let activeCount = 0
 let completedCount = 0
+let taskList = [];
 taskInput = document.getElementById("taskInput")
 addBtn = document.getElementById("addBtn")
 tasklistul = document.getElementById("tasklistul")
@@ -9,18 +10,35 @@ addBtn.addEventListener("click", function () {
         alert("Enter Text");
         return;
     }
+    taskList.push(taskText)
+    JSON.stringify(taskList)
+    localStorage.setItem("tasks", JSON.stringify(taskList))
+    createTask(taskText)
+    activeCount++
+    updateBadges()
+
+});
+let activeBadge = document.getElementById("activeBadge")
+let completedBadge = document.getElementById("completedBadge")
+
+function updateBadges() {
+    activeBadge.textContent = activeCount + " Active"
+    completedBadge.textContent = completedCount + "Completed"
+}
+function createTask(taskText) {
     let newTask = document.createElement("li")
-    tasklistul.prepend(newTask)
-    taskInput.value = "";
-
-
     let checkbox = document.createElement("input")
     checkbox.type = "checkbox"
-
-
     let taskSpan = document.createElement("span")
     taskSpan.textContent = taskText
-
+    let deleteBtn = document.createElement("button")
+    deleteBtn.type = "button"
+    newTask.append(checkbox)
+    newTask.append(taskSpan)
+    newTask.append(deleteBtn)
+    tasklistul.prepend(newTask)
+    deleteBtn.innerHTML = "Delete"
+    deleteBtn.className = "deleteBtn"
     checkbox.addEventListener("click", function () {
         if (checkbox.checked) {
             activeCount--
@@ -34,23 +52,11 @@ addBtn.addEventListener("click", function () {
             updateBadges()
             taskSpan.classList.remove("completed")
         }
-    })
-
-    let deleteBtn = document.createElement("button")
-    deleteBtn.type = "button"
-
-    newTask.append(checkbox)
-    newTask.append(taskSpan)
-    newTask.append(deleteBtn)
-    activeCount++
-    updateBadges()
-    deleteBtn.innerHTML = "Delete"
-    deleteBtn.className = "deleteBtn"
-
-    deleteBtn.addEventListener(
+    } 
+ deleteBtn.addEventListener(
         "click", function () {
             let parentLi = deleteBtn.parentElement
-            
+
             let checkbox = parentLi.querySelector("input")
             if (checkbox.checked) {
                 completedCount--
@@ -62,15 +68,7 @@ addBtn.addEventListener("click", function () {
             }
             parentLi.remove()
         }
-    )
-
-});
-let activeBadge = document.getElementById("activeBadge")
-let completedBadge = document.getElementById("completedBadge")
-
-function updateBadges() {
-    activeBadge.textContent = activeCount + " Active"
-    completedBadge.textContent = completedCount + "Completed"
+    ) 
 }
 
 
